@@ -4,14 +4,10 @@ const router = express.Router();
 
 const controller = require("../controllers/prontuarioController");
 
+// Listar prontuários
 router.get("/", controller.listar);
 
-router.get("/:id", controller.buscarPorId);
-
+// Cadastrar prontuário
 router.post("/", controller.cadastrar);
-
-router.put("/:id", controller.atualizar);
-
-router.delete("/:id", controller.excluir);
 
 module.exports = router;

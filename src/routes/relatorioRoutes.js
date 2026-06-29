@@ -4,6 +4,6 @@ const router = express.Router();
 
 const controller = require("../controllers/relatorioController");
 
-router.get("/", controller.resumo);
+router.get("/", controller.listar);
 
 module.exports = router;

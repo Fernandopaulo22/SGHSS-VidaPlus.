@@ -1,11 +1,15 @@
-let medicos = [];
+const database = require("../database/database");
 
+// Listar médicos
 exports.listar = (req, res) => {
-    res.status(200).json(medicos);
+    res.status(200).json(database.medicos);
 };
 
+// Buscar médico por ID
 exports.buscarPorId = (req, res) => {
-    const medico = medicos.find(m => m.id == req.params.id);
+    const medico = database.medicos.find(
+        m => m.id == req.params.id
+    );
 
     if (!medico) {
         return res.status(404).json({
@@ -16,6 +20,7 @@ exports.buscarPorId = (req, res) => {
     res.json(medico);
 };
 
+// Cadastrar médico
 exports.cadastrar = (req, res) => {
 
     const novoMedico = {
@@ -27,14 +32,17 @@ exports.cadastrar = (req, res) => {
         email: req.body.email
     };
 
-    medicos.push(novoMedico);
+    database.medicos.push(novoMedico);
 
     res.status(201).json(novoMedico);
 };
 
+// Atualizar médico
 exports.atualizar = (req, res) => {
 
-    const medico = medicos.find(m => m.id == req.params.id);
+    const medico = database.medicos.find(
+        m => m.id == req.params.id
+    );
 
     if (!medico) {
         return res.status(404).json({
@@ -51,9 +59,20 @@ exports.atualizar = (req, res) => {
     res.json(medico);
 };
 
+// Excluir médico
 exports.excluir = (req, res) => {
 
-    medicos = medicos.filter(m => m.id != req.params.id);
+    const indice = database.medicos.findIndex(
+        m => m.id == req.params.id
+    );
+
+    if (indice === -1) {
+        return res.status(404).json({
+            mensagem: "Médico não encontrado."
+        });
+    }
+
+    database.medicos.splice(indice, 1);
 
     res.json({
         mensagem: "Médico removido com sucesso."

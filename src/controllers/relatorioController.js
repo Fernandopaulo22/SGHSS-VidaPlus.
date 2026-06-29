@@ -1,25 +1,14 @@
-exports.resumo = (req, res) => {
+const database = require("../database/database");
 
-    res.json({
+exports.listar = (req, res) => {
 
-        hospital: "VidaPlus",
-
-        relatorio: {
-
-            pacientes: "Cadastro disponível",
-
-            medicos: "Cadastro disponível",
-
-            consultas: "Agendamento disponível",
-
-            prontuarios: "Prontuários disponíveis",
-
-            receitas: "Receitas disponíveis",
-
-            leitos: "Controle disponível"
-
-        }
-
+    res.status(200).json({
+        totalPacientes: database.pacientes.length,
+        totalMedicos: database.medicos.length,
+        totalConsultas: database.consultas.length,
+        totalProntuarios: database.prontuarios.length,
+        totalReceitas: database.receitas.length,
+        totalLeitos: database.leitos.length
     });
 
 };

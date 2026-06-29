@@ -1,64 +1,19 @@
-let prontuarios = [];
+const database = require("../database/database");
 
 exports.listar = (req, res) => {
-    res.status(200).json(prontuarios);
-};
-
-exports.buscarPorId = (req, res) => {
-
-    const prontuario = prontuarios.find(p => p.id == req.params.id);
-
-    if (!prontuario) {
-        return res.status(404).json({
-            mensagem: "Prontuário não encontrado."
-        });
-    }
-
-    res.json(prontuario);
+    res.status(200).json(database.prontuarios);
 };
 
 exports.cadastrar = (req, res) => {
 
-    const novoProntuario = {
+    const prontuario = {
         id: Date.now(),
         paciente: req.body.paciente,
-        medico: req.body.medico,
         diagnostico: req.body.diagnostico,
-        observacoes: req.body.observacoes,
-        data: req.body.data
+        observacoes: req.body.observacoes
     };
 
-    prontuarios.push(novoProntuario);
+    database.prontuarios.push(prontuario);
 
-    res.status(201).json(novoProntuario);
-};
-
-exports.atualizar = (req, res) => {
-
-    const prontuario = prontuarios.find(p => p.id == req.params.id);
-
-    if (!prontuario) {
-        return res.status(404).json({
-            mensagem: "Prontuário não encontrado."
-        });
-    }
-
-    prontuario.paciente = req.body.paciente;
-    prontuario.medico = req.body.medico;
-    prontuario.diagnostico = req.body.diagnostico;
-    prontuario.observacoes = req.body.observacoes;
-    prontuario.data = req.body.data;
-
-    res.json(prontuario);
-
-};
-
-exports.excluir = (req, res) => {
-
-    prontuarios = prontuarios.filter(p => p.id != req.params.id);
-
-    res.json({
-        mensagem: "Prontuário removido."
-    });
-
+    res.status(201).json(prontuario);
 };

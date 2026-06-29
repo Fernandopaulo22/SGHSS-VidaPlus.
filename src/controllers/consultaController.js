@@ -1,12 +1,15 @@
-let consultas = [];
+const database = require("../database/database");
 
+// Listar consultas
 exports.listar = (req, res) => {
-    res.status(200).json(consultas);
+    res.status(200).json(database.consultas);
 };
 
+// Buscar consulta
 exports.buscarPorId = (req, res) => {
-
-    const consulta = consultas.find(c => c.id == req.params.id);
+    const consulta = database.consultas.find(
+        c => c.id == req.params.id
+    );
 
     if (!consulta) {
         return res.status(404).json({
@@ -17,6 +20,7 @@ exports.buscarPorId = (req, res) => {
     res.json(consulta);
 };
 
+// Cadastrar consulta
 exports.cadastrar = (req, res) => {
 
     const novaConsulta = {
@@ -25,17 +29,20 @@ exports.cadastrar = (req, res) => {
         medico: req.body.medico,
         data: req.body.data,
         horario: req.body.horario,
-        status: req.body.status || "Agendada"
+        status: "Agendada"
     };
 
-    consultas.push(novaConsulta);
+    database.consultas.push(novaConsulta);
 
     res.status(201).json(novaConsulta);
 };
 
+// Atualizar consulta
 exports.atualizar = (req, res) => {
 
-    const consulta = consultas.find(c => c.id == req.params.id);
+    const consulta = database.consultas.find(
+        c => c.id == req.params.id
+    );
 
     if (!consulta) {
         return res.status(404).json({
@@ -47,17 +54,26 @@ exports.atualizar = (req, res) => {
     consulta.medico = req.body.medico;
     consulta.data = req.body.data;
     consulta.horario = req.body.horario;
-    consulta.status = req.body.status;
 
     res.json(consulta);
 };
 
+// Excluir consulta
 exports.excluir = (req, res) => {
 
-    consultas = consultas.filter(c => c.id != req.params.id);
+    const indice = database.consultas.findIndex(
+        c => c.id == req.params.id
+    );
+
+    if (indice === -1) {
+        return res.status(404).json({
+            mensagem: "Consulta não encontrada."
+        });
+    }
+
+    database.consultas.splice(indice, 1);
 
     res.json({
-        mensagem: "Consulta removida com sucesso."
+        mensagem: "Consulta cancelada com sucesso."
     });
-
 };

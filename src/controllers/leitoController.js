@@ -1,60 +1,19 @@
-let leitos = [];
+const database = require("../database/database");
 
 exports.listar = (req, res) => {
-    res.status(200).json(leitos);
-};
-
-exports.buscarPorId = (req, res) => {
-
-    const leito = leitos.find(l => l.id == req.params.id);
-
-    if (!leito) {
-        return res.status(404).json({
-            mensagem: "Leito não encontrado."
-        });
-    }
-
-    res.json(leito);
+    res.status(200).json(database.leitos);
 };
 
 exports.cadastrar = (req, res) => {
 
-    const novoLeito = {
+    const leito = {
         id: Date.now(),
         numero: req.body.numero,
         setor: req.body.setor,
-        status: req.body.status || "Disponível"
+        status: req.body.status
     };
 
-    leitos.push(novoLeito);
+    database.leitos.push(leito);
 
-    res.status(201).json(novoLeito);
-};
-
-exports.atualizar = (req, res) => {
-
-    const leito = leitos.find(l => l.id == req.params.id);
-
-    if (!leito) {
-        return res.status(404).json({
-            mensagem: "Leito não encontrado."
-        });
-    }
-
-    leito.numero = req.body.numero;
-    leito.setor = req.body.setor;
-    leito.status = req.body.status;
-
-    res.json(leito);
-
-};
-
-exports.excluir = (req, res) => {
-
-    leitos = leitos.filter(l => l.id != req.params.id);
-
-    res.json({
-        mensagem: "Leito removido."
-    });
-
+    res.status(201).json(leito);
 };
