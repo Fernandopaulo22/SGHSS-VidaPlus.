@@ -52,10 +52,66 @@ npm install
 npm start
 ```
 
-Servidor:
+Servidor local:
 
 ```
 http://localhost:3000
+```
+
+## Endpoints disponíveis
+
+### Página inicial
+GET /
+```
+http://localhost:3000/
+```
+
+### Pacientes
+GET
+```
+http://localhost:3000/pacientes
+```
+
+### Médicos
+GET
+```
+http://localhost:3000/medicos
+```
+
+### Consultas
+GET
+```
+http://localhost:3000/consultas
+```
+
+### Prontuários
+GET
+```
+http://localhost:3000/prontuarios
+```
+
+### Receitas
+GET
+```
+http://localhost:3000/receitas
+```
+
+### Leitos
+GET
+```
+http://localhost:3000/leitos
+```
+
+### Relatórios
+GET
+```
+http://localhost:3000/relatorios
+```
+
+### Login
+POST
+```
+http://localhost:3000/auth/login
 ```
 
 ## Autor
