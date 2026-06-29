@@ -1,52 +1,65 @@
-# SGHSS - Sistema de Gestão Hospitalar e de Serviços de Saúde
+# SGHSS - Sistema de Gestão Hospitalar e Serviços de Saúde
 
-Projeto desenvolvido para a disciplina Projeto: Desenvolvimento Back-end
+## Projeto Multidisciplinar - Back-end
 
-## Tecnologias
+Sistema desenvolvido para a disciplina Projeto Multidisciplinar projeto:Desenvolvimento Back-end, simulando um Sistema de Gestão Hospitalar para a instituição fictícia VidaPlus.
+
+## Tecnologias utilizadas
 
 - Node.js
 - Express
 - JavaScript
+- Git
+- GitHub
+
+## Arquitetura
+
+O projeto foi desenvolvido utilizando o padrão MVC (Model-View-Controller).
+
+Estrutura:
+
+- Controllers
+- Models
+- Routes
+- Middleware
+- Database
+- Services
+- Config
+- Utils
 
 ## Funcionalidades
 
-- Cadastro de pacientes
-- Cadastro de médicos
-- Agendamento de consultas
-- Prontuários
-- Receitas
-- Controle de leitos
-- Login
-- Relatórios
+✔ Cadastro de Pacientes
 
-## Estrutura
+✔ Cadastro de Médicos
 
-/controllers
+✔ Gerenciamento de Consultas
 
-/routes
+✔ Gerenciamento de Prontuários
 
-/models
+✔ Emissão de Receitas
 
-/middleware
+✔ Controle de Leitos
 
-/services
+✔ Relatórios
 
-/utils
+✔ Autenticação
 
-## API
+## Como executar
 
-GET /pacientes
+```bash
+npm install
+npm start
+```
 
-POST /pacientes
+Servidor:
 
-PUT /pacientes/:id
+```
+http://localhost:3000
+```
 
-DELETE /pacientes/:id
+## Autor
 
-Mesmo padrão para:
+Fernando paulo de jesus santos 
 
-- médicos
-- consultas
-- prontuários
-- receitas
-- leitos
+O projeto é apenas um Prototipo.

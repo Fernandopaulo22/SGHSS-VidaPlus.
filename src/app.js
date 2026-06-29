@@ -27,8 +27,19 @@ app.use("/relatorios", relatorioRoutes);
 app.get("/", (req, res) => {
     res.json({
         sistema: "SGHSS VidaPlus",
-        status: "Online"
+        versao: "1.0.0",
+        status: "Online",
+        desenvolvedor: "Mari Ribeiro",
+        endpoints: {
+            pacientes: "/pacientes",
+            medicos: "/medicos",
+            consultas: "/consultas",
+            prontuarios: "/prontuarios",
+            receitas: "/receitas",
+            leitos: "/leitos",
+            relatorios: "/relatorios",
+            login: "/auth/login"
+        }
     });
 });
-
 module.exports = app;
